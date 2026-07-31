@@ -1,17 +1,37 @@
 package dev.naresh.listtotree;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class ListToTree {
-    public static Node twoDimensionListToTree(List<List<String>> paths){
+    public static TreeResult twoDimensionListToTree(List<List<String>> rows) {
+
+        if(rows == null || rows.isEmpty()) {
+            throw new IllegalArgumentException("Input cannot be null or empty");
+        }
+
+        List<String> headers = new LinkedList<>(rows.get(0));
+
         Node root = new Node("root");
-        for(List<String> path : paths){
+
+        for(int rowIndex = 1; rowIndex < rows.size(); rowIndex++) {
+
+            List<String> row = rows.get(rowIndex);
+
             Node current = root;
-            for(int i=0;i<path.size();i++){
-                current.getChildren().putIfAbsent(path.get(i),new Node(path.get(i)));
-                current = current.getChildren().get(path.get(i));
+
+            for(String value : row) {
+
+                current.getChildren().putIfAbsent(
+                        value,
+                        new Node(value)
+                );
+
+                current = current.getChildren().get(value);
             }
         }
-        return root;
+
+        return new TreeResult(root, headers);
     }
+
 }

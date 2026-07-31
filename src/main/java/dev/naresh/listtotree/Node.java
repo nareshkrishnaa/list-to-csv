@@ -1,12 +1,14 @@
 package dev.naresh.listtotree;
 
-import java.util.HashMap;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Node {
     private String value;
-    private HashMap<String,Node> children = new HashMap<>();
+    private Map<String,Node> children = new LinkedHashMap<>();
 
-    public void printTree(Node node) {
+    public static void printTree(Node node) {
         printTree(node, "",true);
     }
 
@@ -40,7 +42,7 @@ public class Node {
         return value;
     }
 
-    public HashMap<String, Node> getChildren() {
+    public Map<String, Node> getChildren() {
         return children;
     }
 
@@ -48,7 +50,7 @@ public class Node {
         this.value = value;
     }
 
-    public void setChildren(HashMap<String, Node> children) {
+    public void setChildren(Map<String, Node> children) {
         this.children = children;
     }
 }
