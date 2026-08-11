@@ -1,4 +1,4 @@
-package dev.naresh.listtotree;
+package dev.naresh.listtotree.internal;
 
 
 import java.util.LinkedHashMap;

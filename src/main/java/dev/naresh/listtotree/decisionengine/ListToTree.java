@@ -1,10 +1,12 @@
-package dev.naresh.listtotree;
+package dev.naresh.listtotree.decisionengine;
+
+import dev.naresh.listtotree.internal.Node;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class ListToTree {
-    public static TreeResult twoDimensionListToTree(List<List<String>> rows) {
+ public class ListToTree {
+     public static DecisionTree getDecisionTree(List<List<String>> rows) {
 
         if(rows == null || rows.isEmpty()) {
             throw new IllegalArgumentException("Input cannot be null or empty");
@@ -31,7 +33,7 @@ public class ListToTree {
             }
         }
 
-        return new TreeResult(root, headers);
+        return new DecisionTree(root, headers);
     }
 
 }

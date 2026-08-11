@@ -1,6 +1,14 @@
 package dev.naresh.listtotree;
 
+import dev.naresh.listtotree.decisionengine.ListToTree;
+import dev.naresh.listtotree.internal.Node;
+import dev.naresh.listtotree.decisionengine.DecisionTree;
+import dev.naresh.listtotree.internal.Utility;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class MyTest {
 
@@ -33,8 +41,21 @@ public class MyTest {
                 List.of("(7,10]", "(8,10]", "(5,10]", "(5,10]", "(5,10]", "100000", "5.99", "96")
         );
 
-        TreeResult treeResult = ListToTree.twoDimensionListToTree(data);
-        System.out.println(treeResult.getHeaders());
-        Node.printTree(treeResult.getRoot());
+        DecisionTree decisionTree = ListToTree.getDecisionTree(data);
+        System.out.println(decisionTree.getHeaders());
+        Node.printTree(decisionTree.getRoot());
+
+        ArrayList<Double> request = new ArrayList<>(
+                List.of(
+                        5.0, // a -> (4,7]
+                        5.0, // b -> [0,7]
+                        3.0, // c -> [0,4]
+                        2.0, // d -> [0,5]
+                        2.0  // e -> [0,3]
+                )
+        );
+
+        Map<String, String> result = Utility.evaluate(decisionTree,3,request);
+        System.out.println(result);
     }
 }
